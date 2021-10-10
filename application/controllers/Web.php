@@ -5,19 +5,24 @@ class Web extends CI_Controller {
 
 	public function index()
 	{
-		$data['judul_web'] = $this->Mcrud->judul_web();
+		$this->login();
+		
+		if(false){
+			$data['judul_web'] = $this->Mcrud->judul_web();
 
-		// Data for maps
-		$this->db->join('tbl_user','tbl_user.id_user=tbl_data_obh.id_user');
-		$this->db->order_by('id_data_notaris', 'DESC');
-		$data['query'] = $this->db->get("tbl_data_obh");
-
-		//Data for Peraturan Terkait
-		$data['peraturan'] = $this->db->get_where("tbl_file_manager", array('page' => "Peraturan Terkait"));
-
-		$this->load->view('web/header', $data);
-		$this->load->view('web/beranda', $data);
-		$this->load->view('web/footer', $data);
+			// Data for maps
+			$this->db->join('tbl_user','tbl_user.id_user=tbl_data_obh.id_user');
+			$this->db->order_by('id_data_notaris', 'DESC');
+			$data['query'] = $this->db->get("tbl_data_obh");
+	
+			//Data for Peraturan Terkait
+			$data['peraturan'] = $this->db->get_where("tbl_file_manager", array('page' => "Peraturan Terkait"));
+	
+			$this->load->view('web/header', $data);
+			$this->load->view('web/beranda', $data);
+			$this->load->view('web/footer', $data);
+		}
+		
 	}
 
 	public function login()
